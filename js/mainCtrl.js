@@ -6,14 +6,15 @@ app.controller('mainCtrl', function($scope, itunesService){
     //this means when you make your iTunes request, you'll need to get back the information, parse it accordingly, then set it to songData on the scope -> $scope.songData = ...
     $scope.gridOptions = { 
         data: 'songData',
-        height: '110px',
+        // height: '110px',
         sortInfo: {fields: ['Song', 'Artist', 'Collection', 'Type'], directions: ['asc']},
+        rowHeight: 100,
         columnDefs: [
           {field: 'Play', displayName: 'Play', width: '2%', cellTemplate: '<div class="ngCellText" ng-class="col.colIndex()"><a href="{{row.getProperty(col.field)}}"><img src="http://www.icty.org/x/image/Miscellaneous/play_icon30x30.png"></a></div>'},
           {field: 'trackName', displayName: 'Song Name'},
           {field: 'artistName', displayName: 'Artist'},
           {field: 'collectionName', displayName: 'Collection'},
-          {field: 'artworkUrl100', displayName: 'Album Art', width: '15%', cellTemplate: '<div class="ngCellText" ng-class="col.colIndex()"><img src="{{row.getProperty(col.field)}}" /></div>'},
+          {field: 'artworkUrl100', displayName: 'Album Art', width: '100', height: '100', cellTemplate: '<div class="ngCellText" ng-class="col.colIndex()"><img src="{{grid.getCellValue(row, col)}}" /></div>'},
           {field: 'kind', displayName: 'Type'},
           {field: 'collectionPrice', displayName: 'Collection Price'},
         ]
